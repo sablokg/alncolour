@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DNA Alignment</title>
+<style>
+
+:root {
+  --bg: #ffffff;
+  --panel: #f7f7f9;
+  --border: #dcdce2;
+  --text: #1a1a1a;
+  --muted: #6b6b76;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+h1 {
+  font-size: 20px;
+  margin: 0 0 4px 0;
+}
+.meta {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+.legend span.swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 4px;
+  vertical-align: middle;
+  border: 1px solid rgba(0,0,0,0.15);
+}
+.legend .item {
+  display: inline-flex;
+  align-items: center;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+.aln-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 12px;
+}
+.aln {
+  border-collapse: collapse;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.aln td, .aln th {
+  padding: 0;
+  text-align: left;
+}
+.seq-id {
+  padding: 1px 10px 1px 4px;
+  font-weight: 600;
+  color: var(--text);
+  position: sticky;
+  left: 0;
+  background: var(--panel);
+  min-width: 10ch;
+}
+.ruler-id {
+  padding: 1px 10px 1px 4px;
+  color: var(--muted);
+  position: sticky;
+  left: 0;
+  background: var(--panel);
+  min-width: 10ch;
+}
+.base {
+  display: inline-block;
+  width: 18px;
+  text-align: center;
+  line-height: 20px;
+}
+.ruler-mark {
+  display: inline-block;
+  width: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+}
+.cons-row td {
+  border-top: 2px solid var(--border);
+  padding-top: 4px;
+}
+.ident-bar {
+  display: inline-block;
+  width: 18px;
+  height: 6px;
+  vertical-align: bottom;
+}
+tr:hover .base {
+  filter: brightness(0.92);
+}
+footer {
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+<h1>DNA Alignment</h1>
+<div class="meta">5 sequences &middot; 20 columns</div>
+<div class="legend">
+<span class="item"><span class="swatch" style="background:#5fbf5f;"></span>A</span>
+<span class="item"><span class="swatch" style="background:#5f9be0;"></span>C</span>
+<span class="item"><span class="swatch" style="background:#e0c25f;"></span>G</span>
+<span class="item"><span class="swatch" style="background:#e07f7f;"></span>T / U</span>
+<span class="item"><span class="swatch" style="background:#c9c9c9;"></span>N (ambiguous)</span>
+<span class="item"><span class="swatch" style="background:#f2f2f2;"></span>- (gap)</span>
+</div>
+<div class="aln-wrap">
+<table class="aln">
+<tr>
+<td class="ruler-id"></td>
+<td>
+<span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark" title="position 10">10</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark">&middot;</span><span class="ruler-mark" title="position 20">20</span></td>
+</tr>
+<tr>
+<td class="seq-id">seq1</td>
+<td><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq1">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq1">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq1">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq1">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq1">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq1">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq1">A</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq1">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq1">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq1">T</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq1">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq1">A</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq1">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq1">C</span><span class="base" style="background:#f2f2f2;color:#999999;" title="seq1">-</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq1">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq1">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq1">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq1">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq1">A</span></td>
+</tr>
+<tr>
+<td class="seq-id">seq2</td>
+<td><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq2">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq2">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq2">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq2">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq2">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq2">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq2">A</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq2">C</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq2">C</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq2">T</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq2">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq2">A</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq2">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq2">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq2">A</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq2">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq2">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq2">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq2">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq2">A</span></td>
+</tr>
+<tr>
+<td class="seq-id">seq3</td>
+<td><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq3">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq3">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq3">G</span><span class="base" style="background:#f2f2f2;color:#999999;" title="seq3">-</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq3">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq3">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq3">A</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq3">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq3">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq3">T</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq3">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq3">A</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq3">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq3">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq3">A</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq3">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq3">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq3">G</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq3">G</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq3">A</span></td>
+</tr>
+<tr>
+<td class="seq-id">seq4</td>
+<td><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq4">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq4">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq4">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq4">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq4">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq4">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq4">A</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq4">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq4">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq4">T</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq4">T</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq4">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq4">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq4">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq4">A</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq4">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq4">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq4">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq4">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq4">A</span></td>
+</tr>
+<tr>
+<td class="seq-id">seq5</td>
+<td><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq5">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq5">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq5">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq5">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq5">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq5">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq5">A</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq5">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq5">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq5">T</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq5">T</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq5">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq5">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq5">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq5">A</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq5">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;" title="seq5">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;" title="seq5">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;" title="seq5">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;" title="seq5">A</span></td>
+</tr>
+<tr class="cons-row">
+<td class="seq-id">Consensus</td>
+<td><span class="base" style="background:#5fbf5f;color:#1a1a1a;">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;">A</span><span class="base" style="background:#5f9be0;color:#1a1a1a;">C</span><span class="base" style="background:#e0c25f;color:#1a1a1a;">G</span><span class="base" style="background:#e07f7f;color:#1a1a1a;">T</span><span class="base" style="background:#e07f7f;color:#1a1a1a;">T</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;">A</span><span class="base" style="background:#e0c25f;color:#1a1a1a;">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;">A</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;">A</span><span class="base" style="background:#e07f7f;color:#1a1a1a;">T</span><span class="base" style="background:#e0c25f;color:#1a1a1a;">G</span><span class="base" style="background:#5f9be0;color:#1a1a1a;">C</span><span class="base" style="background:#5fbf5f;color:#1a1a1a;">A</span></td>
+</tr>
+<tr>
+<td class="seq-id">Conservation</td>
+<td><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(74,74,74);" title="80% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(74,74,74);" title="80% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(108,108,108);" title="60% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(74,74,74);" title="80% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span><span class="ident-bar" style="background:rgb(74,74,74);" title="80% identity"></span><span class="ident-bar" style="background:rgb(40,40,40);" title="100% identity"></span></td>
+</tr>
+</table>
+</div>
+<footer>Generated by dna_align_html (Rust)</footer>
+</body>
+</html>
